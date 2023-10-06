@@ -1,23 +1,16 @@
 import scrapy
 from ufcstat_scraper.items import FightItem 
 
-class UfcstatScraper(scrapy.Spider):
-    name = "ufcstat_scraper"
-    start_urls = ["http://www.ufcstats.com/statistics/events/completed?page=all"]
-
+class ParseSingleEvent(scrapy.Spider):
+    name = "ParseSingleEvent"
+    start_urls = ["http://www.ufcstats.com/event-details/c945adc22c2bfe8f"]
+            
 
     def parse(self, response):
-        all_pages = response.css("tbody tr")
-        list_of_all_events = all_pages.css("a.b-link_style_black::attr(href)").getall()
-        for i in list_of_all_events:
-            yield response.follow(i, callback=self.parse_event)
-            
-            
-
-    def parse_event(self, response):
         fight_rows = response.css("tbody tr")
         for i in fight_rows:
             fight_item = FightItem()
+            fight_item = {}
             fight_item["event"] = response.css("span.b-content__title-highlight::text").get().strip()
             fight_item["date"] = response.css("ul.b-list__box-list li::text").getall()[1].strip()
             fight_item["location"] = response.css("ul.b-list__box-list li::text").getall()[3].strip()
