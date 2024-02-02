@@ -1,8 +1,11 @@
 # ufcstat-spider
 
-Required Libraries: - scrapy - dateparser
+Required Libraries:
 
-    To download required libraries, use pip install scrapy dateparser
+- scrapy
+- dateparser
+
+  pip install scrapy dateparser
 
 It needs a venv file to work. Please donwload needed libraries for scrapy.
 
