@@ -23,6 +23,8 @@ class UfcstatScraper(scrapy.Spider):
             fight_item["location"] = response.css("ul.b-list__box-list li::text").getall()[3].strip()
             win_lose_or_draw = i.css("i.b-flag__text::text").get()
             fighterList = i.css("a.b-link_style_black::text").getall()
+            fight_item["fighter1ID"] = i.css("a.b-link_style_black::attr(href)").getall()[0].split("/")[-1]
+            fight_item["fighter2ID"] = i.css("a.b-link_style_black::attr(href)").getall()[1].split("/")[-1]
 
             fight_item["fighter1"] = fighterList[0].strip()
             fight_item["fighter2"] = fighterList[1].strip()

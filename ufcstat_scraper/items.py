@@ -25,6 +25,8 @@ class FightItem(scrapy.Item):
     date = scrapy.Field()
     location = scrapy.Field()
     fighter1 = scrapy.Field()
+    fighter1ID = scrapy.Field()
+    fighter2ID = scrapy.Field()
     fighter2 = scrapy.Field()
     win = scrapy.Field()
     lose = scrapy.Field()
