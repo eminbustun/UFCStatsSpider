@@ -4,7 +4,7 @@
 # https://docs.scrapy.org/en/latest/topics/items.html
 
 import scrapy
-from scrapy.loader.processors import Identity, TakeFirst, Compose, MapCompose, Join
+from itemloaders.processors import Identity, TakeFirst, Compose, MapCompose, Join
 
 STR_toInt = Compose(TakeFirst(), int)
 STR_toFloat = Compose(TakeFirst(), float)
@@ -20,7 +20,15 @@ class UfcstatScraperItem(scrapy.Item):
     name = scrapy.Field()
     pass
 
+
+class FightFighter(scrapy.Item):
+    fighter_id = scrapy.Field()
+    fighter_name = scrapy.Field()
+    
+
+# TODO: Adjust fighter info so that we can retrieve more data. 
 class FightItem(scrapy.Item):
+    event_id = scrapy.Field()
     event = scrapy.Field()
     date = scrapy.Field()
     location = scrapy.Field()
@@ -37,20 +45,21 @@ class FightItem(scrapy.Item):
     weight_class = scrapy.Field()
     method = scrapy.Field()
     endWith = scrapy.Field()
-    roundd = scrapy.Field()
+    round = scrapy.Field()
     time = scrapy.Field()
+
 
 
 class FighterSummaryItem(scrapy.Item):
     # define the fields for your item here like:
     fighter_id = scrapy.Field(output_processor=TakeFirst())
     name = scrapy.Field(output_processor=TakeFirst())
+    nickname = scrapy.Field(output_processor=TakeFirst())
     height = scrapy.Field(output_processor=TakeFirst())
     weight = scrapy.Field(output_processor=TakeFirst())
     reach = scrapy.Field(output_processor=TakeFirst())
     stance = scrapy.Field(output_processor=TakeFirst())
     dob = scrapy.Field(output_processor=TakeFirst())
-    #active = scrapy.Field(output_processor=TakeFirst())
     n_win = scrapy.Field(output_processor=STR_toInt)
     n_loss = scrapy.Field(output_processor=STR_toInt)
     n_draw = scrapy.Field(output_processor=STR_toInt)

@@ -43,6 +43,8 @@ class FightersSpider(scrapy.Spider):
         fighter_id = response.url.split('/')[-1]
         name = response.css('.b-content__title-highlight ::text').get()
 
+        nickname = response.css(".b-content__Nickname ::text").get()
+
         record = response.css('.b-content__title-record ::text').get()
         record = re.findall(r'[0-9]+', record)
 
@@ -69,6 +71,7 @@ class FightersSpider(scrapy.Spider):
         l = ItemLoader(item=FighterSummaryItem(), response=response)
         l.add_value('fighter_id', fighter_id)
         l.add_value('name', name.strip())
+        l.add_value('nickname', nickname.strip())
         l.add_value('height', height[1].strip())
         l.add_value('weight', weight[1].strip())
         l.add_value('reach', reach[1].strip())

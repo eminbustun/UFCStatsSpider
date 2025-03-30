@@ -1,13 +1,14 @@
-# ufcstat-spider
+# UFC Stats Spider
 
-Required Libraries:
+Parser for http://ufcstats.com.
 
-- scrapy
-- dateparser
+> [!CAUTION]
+> Please create a virtual environment before downloading dependencies.
 
-  pip install scrapy dateparser
+Follow the below commands:
 
-It needs a venv file to work. Please donwload needed libraries for scrapy.
+- 1.  `pip install -r requirements.txt`
+- 2.  `cd ufcstat-scraper/`
+- 3.  `scrapy crawl -o output_file.json spiderName`
 
-1. **cd ufcstat-scraper/**
-1. **scrapy crawl -O data.json spiderName**
+**spiderName** does not mean the py file name. It is name field inside the classes.
